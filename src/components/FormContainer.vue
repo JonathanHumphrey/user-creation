@@ -1,46 +1,64 @@
 <template>
   <div class="form-container">
     <!-- Sign in form -->
-    <div class="sign-in-form" v-show="hasAccount">
-      <div v-for="item in signInForm" v-bind:key="item.id" class="form">
-        <p>{{ item.sectionName }}</p>
-        <div v-for="field in item.fields" v-bind:key="field.id">
-          <div v-if="field.type === 'input'">
-            <input
-              type="field.type"
-              v-bind:placeholder="field.label"
-              v-model="field.value"
-              class="input"
-            />
+    <form @submit="onSubmit" id="0">
+      <div class="sign-in-form" v-show="hasAccount">
+        Sign In
+        <div v-for="item in signInForm" v-bind:key="item.id" class="form">
+          <p class="section-name">{{ item.sectionName }}</p>
+          <div v-for="field in item.fields" v-bind:key="field.id">
+            <div v-if="field.type === 'input'">
+              <input
+                type="field.type"
+                v-bind:placeholder="field.label"
+                v-model="field.value"
+                class="input"
+              />
+            </div>
           </div>
         </div>
+        <input type="submit" value="Submit" />
       </div>
-    </div>
+    </form>
     <!-- END SIGN UP -->
     <!-- Sign in form -->
-    <div class="sign-up-form" v-show="!hasAccount">
-      <div v-for="item in signUpForm" v-bind:key="item.id" class="form">
-        <p>{{ item.sectionName }}</p>
-        <div v-for="field in item.fields" v-bind:key="field.id">
-          <div v-if="field.type === 'input'">
-            <input
-              type="field.type"
-              v-bind:placeholder="field.label"
-              v-model="field.value"
-              class="input"
-            />
+    <form @submit="onSubmit" id="1">
+      <div class="sign-up-form" v-show="!hasAccount">
+        Create an Account
+        <div v-for="item in signUpForm" v-bind:key="item.id" class="form">
+          <p class="section-name">{{ item.sectionName }}</p>
+          <div v-for="field in item.fields" v-bind:key="field.id">
+            <div v-if="field.type === 'input'">
+              <input
+                type="field.type"
+                v-bind:placeholder="field.label"
+                v-model="field.value"
+                class="input"
+              />
+            </div>
           </div>
         </div>
+        <input type="submit" value="Submit" />
       </div>
-    </div>
+    </form>
+
     <!-- END SIGN IN -->
-    <div>
-      <label for="button">Don't have an account yet? Create one here!</label>
+    <div class="user-action">
       <input
-        id="button"
+        id="button1"
+        type="button"
+        value="Sign Up"
+        v-bind:class="[
+          !hasAccount ? 'account-nav-selected' : '',
+          'account-nav',
+        ]"
+        @click="userAction($event)"
+      />
+      <input
+        id="button2"
         type="button"
         value="Sign In"
-        class="account-nav"
+        v-bind:class="[hasAccount ? 'account-nav-selected' : '', 'account-nav']"
         @click="userAction($event)"
       />
     </div>
@@ -54,26 +72,51 @@ export default {
   name: "FormContainer",
   components: {},
   data() {
-    return {};
+    return {
+      id: 0,
+      name: "",
+      email: "",
+      pass: "",
+    };
   },
   methods: {
-    ...mapActions(["userAccountCheck"]),
+    ...mapActions(["userAccountCheck", "signUpUser"]),
     userAction(event) {
-      console.log(event.target.labels[0].innerHTML);
       let answer = false;
 
       if (event.target.value === "Sign In") {
         answer = true;
-        event.target.value = "Sign Up";
-        event.target.labels[0].innerHTML =
-          "Don't have an account yet? Create one here!";
-      } else {
-        event.target.value = "Sign In";
-        event.target.labels[0].innerHTML =
-          "Already have an account? Sign in here!";
+        //event.target.classList.add("account-nav-selected");
+      } else if (event.target.value === "Sign Up") {
+        answer = false;
+        //event.target.classList.add("account-nav-selected");
       }
 
       this.userAccountCheck(answer);
+    },
+
+    onSubmit(e) {
+      e.preventDefault();
+      console.log(e.path[0].id);
+      /* for (let item in state) {
+        for (let field in state[item].fields) {
+          //newUser[field] = state[item].fields[field].value;
+          console.log(field);
+        }
+      } */
+
+      if (e.path[0].id === "1") {
+        console.log("right here mf");
+        let newUser = {
+          id: Math.floor(Math.random() * 1000),
+          name: e.target[0].value,
+          email: e.target[1].value,
+          pass: e.target[2].value,
+        };
+        console.log(newUser);
+
+        this.signUpUser(newUser);
+      }
     },
   },
   computed: {
@@ -91,17 +134,28 @@ export default {
   border: solid black;
   flex: 2;
   width: 50rem;
+  height: 18rem;
   margin: auto;
+  padding-bottom: 3rem;
+  position: relative;
 }
 .account-nav {
   cursor: pointer;
   border: none;
-  background-color: #41b883;
-  padding: 0.5rem;
-  margin: 0.5rem;
+  background-color: #36966b;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  border-radius: 0.5rem;
 }
-.sign-up:hover {
-  color: rgb(46, 149, 197);
+.account-nav-selected {
+  background-color: #51eba5;
+}
+.account-nav:hover {
+  background-color: #51eba5;
+}
+.section-name {
+  text-align: left;
+  margin-left: 14rem;
 }
 .sign-in {
   cursor: pointer;
@@ -113,6 +167,12 @@ export default {
 .sign-in:hover {
   color: rgb(46, 149, 197);
 }
+.user-action {
+  width: 100%;
+  text-align: right;
+  position: absolute;
+  top: 0;
+}
 h3 {
   width: 5rem;
   margin: 2rem;
@@ -120,6 +180,8 @@ h3 {
 }
 label {
   width: 25%;
+  font-size: 0.75rem;
+  font-weight: 1000;
 }
 .input {
   flex: 10;
@@ -136,6 +198,7 @@ input[type="submit"] {
   border: 1px solid #41b883;
   cursor: pointer;
   margin: auto;
+  margin-top: 1rem;
   width: 15rem;
 }
 </style>

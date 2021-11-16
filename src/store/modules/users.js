@@ -31,7 +31,7 @@ const state = {
             },
             password: {
                 id: 0,
-                sectionName: "Pass",
+                sectionName: "Password",
                 fields: {
                     password: {
                         id: "field-2",
@@ -49,7 +49,7 @@ const state = {
                 fields: {
                     username: {
                         id: "field-0",
-                        label: "User Name",
+                        label: "Username",
                         value: "",
                         type: "input",
                     },
@@ -57,7 +57,7 @@ const state = {
             },
             password: {
                 id: 0,
-                sectionName: "Pass",
+                sectionName: "Password",
                 fields: {
                     password: {
                         id: "field-2",
@@ -73,6 +73,7 @@ const state = {
 // Grabs allUsers from the state
 const getters = {
     allUsers: (state) => state.users,
+    allState: (state) => state
 };
 const actions = {
     // executes the actions "signUpUser" from UserSignUp.vue and commits the object to the 'newUser' mutation
