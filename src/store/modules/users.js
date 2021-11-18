@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const state = {
     users: [],
+    posts: null,
     userHasAccount: false,
     forms: {
         signUpForm: {
@@ -73,7 +74,7 @@ const state = {
 // Grabs allUsers from the state
 const getters = {
     allUsers: (state) => state.users,
-    allState: (state) => state
+    allState: (state) => state,
 };
 const actions = {
     // executes the actions "signUpUser" from UserSignUp.vue and commits the object to the 'newUser' mutation

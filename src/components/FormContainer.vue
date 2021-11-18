@@ -3,7 +3,7 @@
     <!-- Sign in form -->
     <form @submit="onSubmit" id="0">
       <div class="sign-in-form" v-show="hasAccount">
-        Sign In
+        <h3>Sign In</h3>
         <div v-for="item in signInForm" v-bind:key="item.id" class="form">
           <p class="section-name">{{ item.sectionName }}</p>
           <div v-for="field in item.fields" v-bind:key="field.id">
@@ -24,7 +24,7 @@
     <!-- Sign in form -->
     <form @submit="onSubmit" id="1">
       <div class="sign-up-form" v-show="!hasAccount">
-        Create an Account
+        <h3>Create an Account</h3>
         <div v-for="item in signUpForm" v-bind:key="item.id" class="form">
           <p class="section-name">{{ item.sectionName }}</p>
           <div v-for="field in item.fields" v-bind:key="field.id">
@@ -116,6 +116,15 @@ export default {
         console.log(newUser);
 
         this.signUpUser(newUser);
+
+        e.target[0].value = "";
+        e.target[1].value = "";
+        e.target[2].value = "";
+
+        alert("Account Successfully Created!");
+      } else if (e.path[0].id === "0") {
+        console.log(e.target[0].value);
+        
       }
     },
   },
@@ -174,8 +183,8 @@ export default {
   top: 0;
 }
 h3 {
-  width: 5rem;
-  margin: 2rem;
+  width: 100%;
+  margin: auto;
   display: inline-block;
 }
 label {

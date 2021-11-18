@@ -1,5 +1,12 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": 107,
+      "name": "jhumps",
+      "email": "jonny105596@outlook.com",
+      "pass": "Dookie"
+    }
+  ],
   "posts": [
     {
       "id": 1,
