@@ -12,7 +12,8 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "json-db": "0.0.2",
-    "vue": "^3.0.0",
+    "json-server": "^0.17.0",
+    "vue": "^3.2.22",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2",
     "vuex-persistedstate": "^4.1.0"

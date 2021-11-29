@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const state = {
     users: [],
+    activeUser: null,
     posts: null,
     userHasAccount: false,
     forms: {
@@ -101,13 +102,20 @@ const actions = {
     },
     async userAccess({ commit }, sender) {
         console.log(commit, sender)
+    },
+    async loginUser ({ commit }, sender){
+        commit('selectedUser', sender)
+        console.log(state.activeUser)
+        
     }
+    
 };
 const mutations = {
     newUser: (state, newUser) => state.users.unshift(newUser),
     setUsers: (state, users) => (state.users = users),
     removeUser: (state, id) => (state.users = state.users.filter(user => user.id !== id)),
-    userAccount: (state, answer) => (state.userHasAccount = answer)
+    userAccount: (state, answer) => (state.userHasAccount = answer),
+    selectedUser: (state, sender) => (state.activeUser = sender)
 }
 
 export default {

@@ -80,7 +80,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["userAccountCheck", "signUpUser"]),
+    ...mapActions(["userAccountCheck", "signUpUser", "loginUser"]),
     userAction(event) {
       let answer = false;
 
@@ -97,14 +97,14 @@ export default {
 
     onSubmit(e) {
       e.preventDefault();
-      console.log(e.path[0].id);
+      console.log(e.target);
       /* for (let item in state) {
         for (let field in state[item].fields) {
           //newUser[field] = state[item].fields[field].value;
           console.log(field);
         }
       } */
-
+      // REGISTER PATH
       if (e.path[0].id === "1") {
         console.log("right here mf");
         let newUser = {
@@ -122,8 +122,32 @@ export default {
         e.target[2].value = "";
 
         alert("Account Successfully Created!");
-      } else if (e.path[0].id === "0") {
-        console.log(e.target[0].value);
+      } 
+      // SIGN IN PATH
+      else if (e.path[0].id === "0") {
+        //console.log(this.users.users[1])
+        //console.log(this.users.users[0].name)
+        if(e.target[0].value)
+        {
+          console.log('here now')
+          this.users.users.forEach(element => {
+            if(element.name === e.target[0].value)
+            {
+              console.log('poop')
+              if (element.pass === e.target[1].value){
+                console.log('success')
+                let sender = {
+                  name: e.target[0].value,
+                  pass: e.target[1].value
+                }
+                console.log(this.activeUser)
+                this.loginUser(sender)
+                e.target[0].value = ''
+                e.target[1].value = ''
+              }
+            }
+          });
+        }
         
       }
     },
@@ -133,6 +157,8 @@ export default {
       hasAccount: (state) => state.users.userHasAccount,
       signUpForm: (state) => state.users.forms.signUpForm,
       signInForm: (state) => state.users.forms.signInForm,
+      users: (state) => state.users,
+      activeUser: (state) => state.users.activeUser
     }),
   },
 };

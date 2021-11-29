@@ -4,9 +4,10 @@
     <!-- Router links for A Home component and form rendering -->
     <router-link to="/"> Home </router-link>
     -
-    <router-link to="register">Sign In/Sign Up</router-link>
+    <router-link to="register">Login/Register</router-link>
 
     <router-view></router-view>
+    <br />
     <AllUsers />
   </div>
 </template>
