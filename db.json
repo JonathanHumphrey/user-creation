@@ -1,16 +1,11 @@
 {
   "users": [
     {
-      "id": 107,
+      "id": 569,
       "name": "jhumps",
       "email": "jonny105596@outlook.com",
-      "pass": "Dookie"
-    },
-    {
-      "id": 227,
-      "name": "gokid58",
-      "email": "gokid58@gmail.com",
-      "pass": "gokidder"
+      "pass": "dooker",
+      "isSignedIn": false
     }
   ],
   "posts": [
@@ -20,11 +15,14 @@
       "author": "typicode"
     }
   ],
-  "comments": [
+  "userPosts": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "body": "pogchampion"
+    },
+    {
+      "id": 47,
+      "body": "pogchampions"
     }
   ],
   "profile": {

@@ -77,6 +77,7 @@ export default {
       name: "",
       email: "",
       pass: "",
+      isSignedIn: false,
     };
   },
   methods: {
@@ -112,6 +113,7 @@ export default {
           name: e.target[0].value,
           email: e.target[1].value,
           pass: e.target[2].value,
+          isSignedIn: false,
         };
         console.log(newUser);
 
@@ -122,34 +124,36 @@ export default {
         e.target[2].value = "";
 
         alert("Account Successfully Created!");
-      } 
+      }
       // SIGN IN PATH
       else if (e.path[0].id === "0") {
         //console.log(this.users.users[1])
         //console.log(this.users.users[0].name)
-        if(e.target[0].value)
-        {
-          console.log('here now')
-          this.users.users.forEach(element => {
-            if(element.name === e.target[0].value)
-            {
-              console.log('poop')
-              if (element.pass === e.target[1].value){
-                console.log('success')
+        if (e.target[0].value) {
+          console.log("here now");
+          this.users.users.forEach((element) => {
+            if (element.name === e.target[0].value) {
+              console.log("poop");
+              if (element.pass === e.target[1].value) {
+                console.log("success");
                 let sender = {
                   name: e.target[0].value,
-                  pass: e.target[1].value
-                }
-                console.log(this.activeUser)
-                this.loginUser(sender)
-                e.target[0].value = ''
-                e.target[1].value = ''
+                  pass: e.target[1].value,
+                  isSignedIn: true,
+                };
+                console.log(this.activeUser);
+                this.loginUser(sender);
+                e.target[0].value = "";
+                e.target[1].value = "";
               }
             }
           });
         }
-        
       }
+      //END SIGN IN PATH
+      e.target[0].value = "";
+      e.target[1].value = "";
+      e.target[2].value = "";
     },
   },
   computed: {
@@ -158,7 +162,7 @@ export default {
       signUpForm: (state) => state.users.forms.signUpForm,
       signInForm: (state) => state.users.forms.signInForm,
       users: (state) => state.users,
-      activeUser: (state) => state.users.activeUser
+      activeUser: (state) => state.users.activeUser,
     }),
   },
 };
