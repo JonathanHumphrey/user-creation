@@ -2,16 +2,16 @@
 
 <template>
   <div>
-    <FormComponent />
+    <FormContainer />
   </div>
 </template>
 <script>
-import FormComponent from "../components/FormContainer.vue";
+import FormContainer from "../components/FormContainer.vue";
 
 export default {
   name: "UserAction",
   components: {
-    FormComponent,
+    FormContainer,
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="form-container">
     <!-- Sign in form -->
-    <form @submit="onSubmit" id="0">
+    <!-- <form @submit="onSubmit" id="0">
       <div class="sign-in-form" v-show="hasAccount">
         <h3>Sign In</h3>
         <div v-for="item in signInForm" v-bind:key="item.id" class="form">
@@ -19,10 +19,19 @@
         </div>
         <input type="submit" value="Submit" />
       </div>
-    </form>
+    </form> -->
+    <FormTemplate
+      id="0"
+      v-bind:show="hasAccount"
+      formClass="sign-in-form"
+      formTitle="Sign In"
+      v-bind:formData="signInForm"
+      v-bind:submitFunction="onSubmit"
+    />
+
     <!-- END SIGN UP -->
     <!-- Sign in form -->
-    <form @submit="onSubmit" id="1">
+    <!-- <form @submit="onSubmit" id="1">
       <div class="sign-up-form" v-show="!hasAccount">
         <h3>Create an Account</h3>
         <div v-for="item in signUpForm" v-bind:key="item.id" class="form">
@@ -40,7 +49,15 @@
         </div>
         <input type="submit" value="Submit" />
       </div>
-    </form>
+    </form> -->
+    <FormTemplate
+      id="1"
+      v-bind:show="!hasAccount"
+      formClass="sign-up-form"
+      formTitle="Sign up"
+      v-bind:formData="signUpForm"
+      v-bind:submitFunction="onSubmit"
+    />
 
     <!-- END SIGN IN -->
     <div class="user-action">
@@ -67,10 +84,13 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import FormTemplate from "@/components/forms/FormTemplate";
 
 export default {
   name: "FormContainer",
-  components: {},
+  components: {
+    FormTemplate,
+  },
   data() {
     return {
       id: 0,
