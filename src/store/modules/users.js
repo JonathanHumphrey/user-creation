@@ -64,8 +64,8 @@ const state = {
                     password: {
                         id: "field-2",
                         label: "Password",
-                        value: "",
-                        type: "input"
+                        value: "Submit",
+                        type: "button"
                     }
                 }
             }

@@ -82,29 +82,23 @@ export default {
   },
   methods: {
     ...mapActions(["userAccountCheck", "signUpUser", "loginUser"]),
+    // Small bit of logic to see what form to generate
     userAction(event) {
       let answer = false;
 
       if (event.target.value === "Sign In") {
         answer = true;
-        //event.target.classList.add("account-nav-selected");
       } else if (event.target.value === "Sign Up") {
         answer = false;
-        //event.target.classList.add("account-nav-selected");
       }
-
+      // Sends the answer to the users.js module to be processed
       this.userAccountCheck(answer);
     },
 
+    // Takes the event from the form to create account or sign in
     onSubmit(e) {
       e.preventDefault();
       console.log(e.target);
-      /* for (let item in state) {
-        for (let field in state[item].fields) {
-          //newUser[field] = state[item].fields[field].value;
-          console.log(field);
-        }
-      } */
       // REGISTER PATH
       if (e.path[0].id === "1") {
         console.log("right here mf");
@@ -119,9 +113,9 @@ export default {
 
         this.signUpUser(newUser);
 
-        e.target[0].value = "";
-        e.target[1].value = "";
-        e.target[2].value = "";
+        for (let index in e.target) {
+          e.target[index].value = "";
+        }
 
         alert("Account Successfully Created!");
       }
@@ -143,17 +137,15 @@ export default {
                 };
                 console.log(this.activeUser);
                 this.loginUser(sender);
-                e.target[0].value = "";
-                e.target[1].value = "";
+                for (let index in e.target) {
+                  e.target[index].value = "";
+                }
               }
             }
           });
         }
       }
       //END SIGN IN PATH
-      e.target[0].value = "";
-      e.target[1].value = "";
-      e.target[2].value = "";
     },
   },
   computed: {
