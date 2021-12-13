@@ -116,9 +116,9 @@ export default {
       this.userAccountCheck(answer);
     },
 
-    onSubmit(e) {
-      e.preventDefault();
-      console.log(e.target);
+    onSubmit(e,data) {
+      console.log(e,data)
+      
       /* for (let item in state) {
         for (let field in state[item].fields) {
           //newUser[field] = state[item].fields[field].value;
