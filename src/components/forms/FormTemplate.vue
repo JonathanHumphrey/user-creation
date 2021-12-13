@@ -15,7 +15,7 @@
           </div>
         </div>
       </div>
-      <button :id="id" @click="constructState($event)">Submit</button>
+      <button :id="id" @click="constructState($event,formData)">Submit</button>
     </div>
   </form>
 </template>
