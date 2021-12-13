@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <Header />
+    <UserData />
     <!-- Router links for A Home component and form rendering -->
     <router-link to="/"> Home </router-link>
     -
@@ -19,6 +20,7 @@
 import Header from "./components/Header.vue";
 //import FormContainer from "./components/FormContainer.vue";
 import AllUsers from "./components/AllUsers.vue";
+import UserData from "./components/UserData.vue";
 
 export default {
   name: "App",
@@ -26,6 +28,7 @@ export default {
   components: {
     Header,
     AllUsers,
+    UserData,
   },
 };
 </script>

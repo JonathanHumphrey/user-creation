@@ -32,12 +32,38 @@ export default {
       let sender = {
         data: newState,
       };
-      this.buttonFunction(sender);
-      if (this.cancelFunction) {
-        this.cancelFunction();
-      }
+      this.submitFunction(sender);
     },
   },
   props: ["id", "formClass", "show", "formTitle", "formData", "submitFunction"],
 };
 </script>
+<style scoped>
+.section-name {
+  text-align: left;
+  margin-left: 14rem;
+}
+.input {
+  flex: 10;
+  padding: 10px;
+  border: 1px solid #41b883;
+  outline: 0;
+  width: 20rem;
+  margin: auto;
+}
+.submit {
+  flex: 2;
+  background: #41b883;
+  color: #fff;
+  border: 1px solid #41b883;
+  cursor: pointer;
+  margin: auto;
+  margin-top: 1rem;
+  width: 15rem;
+}
+h3 {
+  width: 100%;
+  margin: auto;
+  display: inline-block;
+}
+</style>

@@ -104,8 +104,10 @@ const actions = {
         console.log(commit, sender)
     },
     async loginUser ({ commit }, sender){
+        console.log(sender.name)
         commit('selectedUser', sender)
-        console.log(state.activeUser)
+        //console.log(state.activeUser)
+        console.log(sender.name)
         
     }
     
