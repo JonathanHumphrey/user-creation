@@ -15,14 +15,15 @@
           </div>
         </div>
       </div>
-      <button class="submit" @click="constructState()">Submit</button>
+      <button :id="id" @click="constructState($event, formData)">Submit</button>
     </div>
   </form>
 </template>
 <script>
 export default {
   methods: {
-    constructState(state) {
+    constructState(event, state) {
+      event.preventDefault();
       let newState = {};
       for (let item in state) {
         for (let field in state[item].fields) {
@@ -32,7 +33,7 @@ export default {
       let sender = {
         data: newState,
       };
-      this.buttonFunction(sender);
+      this.submitFunction(event, sender);
       if (this.cancelFunction) {
         this.cancelFunction();
       }
