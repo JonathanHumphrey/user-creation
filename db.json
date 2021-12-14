@@ -6,6 +6,13 @@
       "email": "jonny105596@outlook.com",
       "pass": "dooker",
       "isSignedIn": false
+    },
+    {
+      "id": 259,
+      "name": "dook",
+      "email": "ass@google.com",
+      "pass": "poop",
+      "isSignedIn": false
     }
   ],
   "posts": [

@@ -116,9 +116,9 @@ export default {
       this.userAccountCheck(answer);
     },
 
-    onSubmit(e,data) {
-      console.log("id",e.target.id,data)
-      
+    onSubmit(e, data) {
+      console.log("id", e.target.id, data);
+
       /* for (let item in state) {
         for (let field in state[item].fields) {
           //newUser[field] = state[item].fields[field].value;
@@ -127,7 +127,6 @@ export default {
       } */
       // REGISTER PATH
       if (e.target.id === "1") {
-        console.log("right here mf");
         let newUser = {
           id: Math.floor(Math.random() * 1000),
           name: data.data.username,
@@ -144,45 +143,56 @@ export default {
         // e.target[2].value = "";
 
         alert("Account Successfully Created!");
+      } else if (e.target.id === "0") {
+        console.log(this.users);
+        for (let i in this.users) {
+          if (data.data.username === this.users[i].name) {
+            console.log("correct name");
+            if (data.data.password === this.users[i].pass) {
+              console.log("correct password");
+              console.log(this.users[i].id);
+            }
+          }
+        }
       }
       // SIGN IN PATH
-    //   else if (e.target.id === "0") {
-    //     //console.log(this.users.users[1])
-    //     //console.log(this.users.users[0].name)
-    //     if (e.target[0].value) {
-    //       console.log("here now");
-    //       this.users.users.forEach((element) => {
-    //         if (element.name === e.target[0].value) {
-    //           console.log("poop");
-    //           if (element.pass === e.target[1].value) {
-    //             console.log("success");
-    //             let sender = {
-    //               name: e.target[0].value,
-    //               pass: e.target[1].value,
-    //               isSignedIn: true,
-    //             };
-    //             console.log(this.activeUser);
-    //             this.loginUser(sender);
-    //             e.target[0].value = "";
-    //             e.target[1].value = "";
-    //           }
-    //         }
-    //       });
-    //     }
-    //   }
-    //   //END SIGN IN PATH
-    //   e.target[0].value = "";
-    //   e.target[1].value = "";
-    //   e.target[2].value = "";
-    // },
-    }
+      //   else if (e.target.id === "0") {
+      //     //console.log(this.users.users[1])
+      //     //console.log(this.users.users[0].name)
+      //     if (e.target[0].value) {
+      //       console.log("here now");
+      //       this.users.users.forEach((element) => {
+      //         if (element.name === e.target[0].value) {
+      //           console.log("poop");
+      //           if (element.pass === e.target[1].value) {
+      //             console.log("success");
+      //             let sender = {
+      //               name: e.target[0].value,
+      //               pass: e.target[1].value,
+      //               isSignedIn: true,
+      //             };
+      //             console.log(this.activeUser);
+      //             this.loginUser(sender);
+      //             e.target[0].value = "";
+      //             e.target[1].value = "";
+      //           }
+      //         }
+      //       });
+      //     }
+      //   }
+      //   //END SIGN IN PATH
+      //   e.target[0].value = "";
+      //   e.target[1].value = "";
+      //   e.target[2].value = "";
+      // },
+    },
   },
   computed: {
     ...mapState({
       hasAccount: (state) => state.users.userHasAccount,
       signUpForm: (state) => state.users.forms.signUpForm,
       signInForm: (state) => state.users.forms.signInForm,
-      users: (state) => state.users,
+      users: (state) => state.users.users,
       activeUser: (state) => state.users.activeUser,
     }),
   },
