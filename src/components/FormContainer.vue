@@ -77,28 +77,28 @@ export default {
       this.userAccountCheck(answer);
     },
 
-    // Takes the event from the form to create account or sign in
-    onSubmit(e) {
-      //e.preventDefault();
 
-      console.log(e.target);
+    onSubmit(e, data) {
+      console.log("id", e.target.id, data);
+      /* for (let item in state) {
+        for (let field in state[item].fields) {
+          //newUser[field] = state[item].fields[field].value;
+          console.log(field);
+        }
+      } */
       // REGISTER PATH
-      if (e.path[0].id === "1") {
-        console.log("right here mf");
+      if (e.target.id === "1") {
         let newUser = {
           id: Math.floor(Math.random() * 1000),
-          name: e.target[0].value,
-          email: e.target[1].value,
-          pass: e.target[2].value,
+          name: data.data.username,
+          email: data.data.email,
+          pass: data.data.password,
           isSignedIn: false,
         };
         console.log(newUser);
 
         this.signUpUser(newUser);
 
-        for (let index in e.target) {
-          e.target[index].value = "";
-        }
 
         alert("Account Successfully Created!");
       }
@@ -128,11 +128,23 @@ export default {
                   e.target[index].value = "";
                 }
               }
+        // e.target[0].value = "";
+        // e.target[1].value = "";
+        // e.target[2].value = "";
+
+        alert("Account Successfully Created!");
+      } else if (e.target.id === "0") {
+        console.log(this.users);
+        for (let i in this.users) {
+          if (data.data.username === this.users[i].name) {
+            console.log("correct name");
+            if (data.data.password === this.users[i].pass) {
+              console.log("correct password");
+              console.log(this.users[i].id);
             }
-          });
+          }
         }
       }
-      //END SIGN IN PATH
     },
   },
   computed: {
@@ -140,7 +152,7 @@ export default {
       hasAccount: (state) => state.users.userHasAccount,
       signUpForm: (state) => state.users.forms.signUpForm,
       signInForm: (state) => state.users.forms.signInForm,
-      users: (state) => state.users,
+      users: (state) => state.users.users,
       activeUser: (state) => state.users.activeUser,
     }),
   },

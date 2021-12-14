@@ -6,12 +6,12 @@ import UserAction from './views/UserAction.vue'
 const routes = [
     {
         path: '/',
-        name: Home,
+        name: "Home",
         component: Home
     },
      {
         path: '/register',
-        name: UserAction,
+        name: "UserAction",
         component: UserAction
     } 
 ]
