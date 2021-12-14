@@ -1,55 +1,17 @@
 <template>
   <div class="form-container">
-    <!-- Sign in form -->
-    <!-- <form @submit="onSubmit" id="0">
-      <div class="sign-in-form" v-show="hasAccount">
-        <h3>Sign In</h3>
-        <div v-for="item in signInForm" v-bind:key="item.id" class="form">
-          <p class="section-name">{{ item.sectionName }}</p>
-          <div v-for="field in item.fields" v-bind:key="field.id">
-            <div v-if="field.type === 'input'">
-              <input
-                type="field.type"
-                v-bind:placeholder="field.label"
-                v-model="field.value"
-                class="input"
-              />
-            </div>
-          </div>
-        </div>
-        <input type="submit" value="Submit" />
-      </div>
-    </form> -->
+    <!-- Sign up form -->
     <FormTemplate
       id="0"
       v-bind:show="hasAccount"
-      formClass="sign-in-form"
+      formClass="sign-in"
       formTitle="Sign In"
       v-bind:formData="signInForm"
       v-bind:submitFunction="onSubmit"
     />
-
     <!-- END SIGN UP -->
+
     <!-- Sign in form -->
-    <!-- <form @submit="onSubmit" id="1">
-      <div class="sign-up-form" v-show="!hasAccount">
-        <h3>Create an Account</h3>
-        <div v-for="item in signUpForm" v-bind:key="item.id" class="form">
-          <p class="section-name">{{ item.sectionName }}</p>
-          <div v-for="field in item.fields" v-bind:key="field.id">
-            <div v-if="field.type === 'input'">
-              <input
-                type="field.type"
-                v-bind:placeholder="field.label"
-                v-model="field.value"
-                class="input"
-              />
-            </div>
-          </div>
-        </div>
-        <input type="submit" value="Submit" />
-      </div>
-    </form> -->
     <FormTemplate
       id="1"
       v-bind:show="!hasAccount"
@@ -58,8 +20,8 @@
       v-bind:formData="signUpForm"
       v-bind:submitFunction="onSubmit"
     />
-
     <!-- END SIGN IN -->
+
     <div class="user-action">
       <input
         id="button1"
@@ -102,23 +64,22 @@ export default {
   },
   methods: {
     ...mapActions(["userAccountCheck", "signUpUser", "loginUser"]),
+    // Small bit of logic to see what form to generate
     userAction(event) {
       let answer = false;
 
       if (event.target.value === "Sign In") {
         answer = true;
-        //event.target.classList.add("account-nav-selected");
       } else if (event.target.value === "Sign Up") {
         answer = false;
-        //event.target.classList.add("account-nav-selected");
       }
-
+      // Sends the answer to the users.js module to be processed
       this.userAccountCheck(answer);
     },
 
+
     onSubmit(e, data) {
       console.log("id", e.target.id, data);
-
       /* for (let item in state) {
         for (let field in state[item].fields) {
           //newUser[field] = state[item].fields[field].value;
@@ -138,6 +99,35 @@ export default {
 
         this.signUpUser(newUser);
 
+
+        alert("Account Successfully Created!");
+      }
+      // SIGN IN PATH
+      else if (e.path[0].id === "0") {
+        //console.log(this.users.users[1])
+        //console.log(this.users.users[0].name)
+        if (e.target[0].value) {
+          console.log("here now");
+          this.users.users.forEach((element) => {
+            if (element.name === e.target[0].value) {
+              console.log("poop");
+              if (element.pass === e.target[1].value) {
+                console.log("success");
+                let sender = {
+                  name: e.target[0].value,
+                  pass: e.target[1].value,
+                  isSignedIn: true,
+                };
+                for (let i in this.users) {
+                  //if(this.user[i].id )
+                  console.log(this.user[i]);
+                }
+                console.log(this.activeUser);
+                this.loginUser(sender);
+                for (let index in e.target) {
+                  e.target[index].value = "";
+                }
+              }
         // e.target[0].value = "";
         // e.target[1].value = "";
         // e.target[2].value = "";
@@ -155,36 +145,6 @@ export default {
           }
         }
       }
-      // SIGN IN PATH
-      //   else if (e.target.id === "0") {
-      //     //console.log(this.users.users[1])
-      //     //console.log(this.users.users[0].name)
-      //     if (e.target[0].value) {
-      //       console.log("here now");
-      //       this.users.users.forEach((element) => {
-      //         if (element.name === e.target[0].value) {
-      //           console.log("poop");
-      //           if (element.pass === e.target[1].value) {
-      //             console.log("success");
-      //             let sender = {
-      //               name: e.target[0].value,
-      //               pass: e.target[1].value,
-      //               isSignedIn: true,
-      //             };
-      //             console.log(this.activeUser);
-      //             this.loginUser(sender);
-      //             e.target[0].value = "";
-      //             e.target[1].value = "";
-      //           }
-      //         }
-      //       });
-      //     }
-      //   }
-      //   //END SIGN IN PATH
-      //   e.target[0].value = "";
-      //   e.target[1].value = "";
-      //   e.target[2].value = "";
-      // },
     },
   },
   computed: {
@@ -243,32 +203,10 @@ export default {
   position: absolute;
   top: 0;
 }
-h3 {
-  width: 100%;
-  margin: auto;
-  display: inline-block;
-}
+
 label {
   width: 25%;
   font-size: 0.75rem;
   font-weight: 1000;
-}
-.input {
-  flex: 10;
-  padding: 10px;
-  border: 1px solid #41b883;
-  outline: 0;
-  width: 20rem;
-  margin: auto;
-}
-input[type="submit"] {
-  flex: 2;
-  background: #41b883;
-  color: #fff;
-  border: 1px solid #41b883;
-  cursor: pointer;
-  margin: auto;
-  margin-top: 1rem;
-  width: 15rem;
 }
 </style>

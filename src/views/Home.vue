@@ -1,13 +1,13 @@
 <template>
   <div>
     <h3>Home</h3>
-    <p>
+    <p v-show="!activeUser.name">
       Welcome to the website, create an account or sign in to an existing one to
       view your dashboard
     </p>
   </div>
   <div class="user-dash" v-show="activeUser.name">
-    {{ activeUser.name }}
+    User: {{ activeUser.name }}
     <UserContent />
   </div>
 </template>

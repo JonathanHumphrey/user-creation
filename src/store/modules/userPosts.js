@@ -8,19 +8,26 @@ const getters = {
 };
 const actions = {
     async postUserContent({ commit }, sender) {
-        const res = await axios.post('http://localhost:5000/userPosts', sender)
-        console.log(state.posts, res)
+        await axios.post('http://localhost:5000/userPosts', sender)
+        console.log(state.posts)
         //let content = res.data.body
         commit('post', sender)
     },
     async deletePost({ commit }, id) {
         await axios.delete(`http://localhost:5000/userPosts/${id}`)
         commit('removePost', id)
+    },
+    async fetchPosts({ commit }) {
+        const res = await axios.get('http://localhost:5000/userPosts')
+
+        console.log(res.data)
+        commit('setPosts', res.data)
     }
 };
 const mutations = {
     post: (state, content) => state.posts.unshift(content),
-    removePost: (state, id) => (state.posts = state.posts.filter(post => post.id !== id))
+    removePost: (state, id) => (state.posts = state.posts.filter(post => post.id !== id)),
+    setPosts: (state, posts) => (state.posts = posts),
 };
 
 export default {
