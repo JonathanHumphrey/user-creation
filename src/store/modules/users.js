@@ -5,6 +5,7 @@ const state = {
     activeUser: null,
     posts: null,
     userHasAccount: false,
+    invalidCredentials: false,
     forms: {
         signUpForm: {
             name: {
@@ -108,7 +109,10 @@ const actions = {
         commit('selectedUser', sender)
         //console.log(state.activeUser)
         console.log(sender.name)
-        
+    },
+    async logOutUser({ commit }) {
+        console.log(commit)
+        commit('logout')
     }
     
 };
@@ -117,7 +121,8 @@ const mutations = {
     setUsers: (state, users) => (state.users = users),
     removeUser: (state, id) => (state.users = state.users.filter(user => user.id !== id)),
     userAccount: (state, answer) => (state.userHasAccount = answer),
-    selectedUser: (state, sender) => (state.activeUser = sender)
+    selectedUser: (state, sender) => (state.activeUser = sender),
+    logout: (state) => (state.activeUser = null)
 }
 
 export default {

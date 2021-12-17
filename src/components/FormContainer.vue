@@ -40,6 +40,7 @@
         v-bind:class="[hasAccount ? 'account-nav-selected' : '', 'account-nav']"
         @click="userAction($event)"
       />
+      <p v-bind:show="invalidCredentials">incorrect username or password</p>
     </div>
   </div>
 </template>
@@ -76,16 +77,9 @@ export default {
       // Sends the answer to the users.js module to be processed
       this.userAccountCheck(answer);
     },
-
-
     onSubmit(e, data) {
       console.log("id", e.target.id, data);
-      /* for (let item in state) {
-        for (let field in state[item].fields) {
-          //newUser[field] = state[item].fields[field].value;
-          console.log(field);
-        }
-      } */
+
       // REGISTER PATH
       if (e.target.id === "1") {
         let newUser = {
@@ -99,49 +93,27 @@ export default {
 
         this.signUpUser(newUser);
 
-
         alert("Account Successfully Created!");
       }
       // SIGN IN PATH
-      else if (e.path[0].id === "0") {
-        //console.log(this.users.users[1])
-        //console.log(this.users.users[0].name)
-        if (e.target[0].value) {
-          console.log("here now");
-          this.users.users.forEach((element) => {
-            if (element.name === e.target[0].value) {
-              console.log("poop");
-              if (element.pass === e.target[1].value) {
-                console.log("success");
-                let sender = {
-                  name: e.target[0].value,
-                  pass: e.target[1].value,
-                  isSignedIn: true,
-                };
-                for (let i in this.users) {
-                  //if(this.user[i].id )
-                  console.log(this.user[i]);
-                }
-                console.log(this.activeUser);
-                this.loginUser(sender);
-                for (let index in e.target) {
-                  e.target[index].value = "";
-                }
-              }
-        // e.target[0].value = "";
-        // e.target[1].value = "";
-        // e.target[2].value = "";
-
-        alert("Account Successfully Created!");
-      } else if (e.target.id === "0") {
+      else if (e.target.id === "0") {
         console.log(this.users);
         for (let i in this.users) {
+          console.log(data.data.username, this.users[i].name);
           if (data.data.username === this.users[i].name) {
             console.log("correct name");
             if (data.data.password === this.users[i].pass) {
               console.log("correct password");
-              console.log(this.users[i].id);
+              this.users.invalidCredentials = false;
+              //this.users.activeUser = this.users[i];
+              this.loginUser(this.users[i]);
+              this.users[i].isSignedIn = true;
+              break;
             }
+          } else if (data.data.username !== this.users[i].name) {
+            console.log("incorrect name");
+            this.users.invalidCredentials = true;
+            console.log(this.users.invalidCredentials);
           }
         }
       }
@@ -154,6 +126,7 @@ export default {
       signInForm: (state) => state.users.forms.signInForm,
       users: (state) => state.users.users,
       activeUser: (state) => state.users.activeUser,
+      invalidCredentials: (state) => state.users.invalidCredentials,
     }),
   },
 };
@@ -202,6 +175,15 @@ export default {
   text-align: right;
   position: absolute;
   top: 0;
+}
+.invalid {
+  display: inline;
+}
+.valid {
+  display: none;
+}
+.p {
+  color: red;
 }
 
 label {
