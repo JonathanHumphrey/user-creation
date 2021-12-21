@@ -5,7 +5,7 @@
     <button @click="post()">Post!</button>
 
     <div class="posts" v-for="post in allPosts" v-bind:key="post.id">
-      <h4>{{ activeUser.name }}</h4>
+      <h4>{{ post.poster }}</h4>
       <p class="post-body">{{ post.body }}</p>
       <p class="date">Posted at: {{ post.timeOfPost }}</p>
       <i class="del" @click="removePost(post.id)">...</i>
@@ -32,9 +32,12 @@ export default {
         id: Math.floor(Math.random() * 100),
         body: str,
         timeOfPost: moment(new Date()).format("h:mm A MM/DD/YYYY"),
+        poster: this.activeUser.name
       };
       console.log(sender.timeOfPost);
       this.postUserContent(sender);
+      
+      text = "";
     },
     removePost(id) {
       this.deletePost(id);
