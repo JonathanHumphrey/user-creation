@@ -1,5 +1,5 @@
 <template>
-  <form id="id">
+  <form id="form-template">
     <div class="formClass" v-show="show">
       <h3>{{ formTitle }}</h3>
       <div v-for="item in formData" v-bind:key="item.id" class="form">

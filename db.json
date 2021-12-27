@@ -13,6 +13,13 @@
       "email": "ass@google.com",
       "pass": "poop",
       "isSignedIn": false
+    },
+    {
+      "id": 665,
+      "name": "gokid58",
+      "email": "gokid58@gmail.com",
+      "pass": "gokidder",
+      "isSignedIn": false
     }
   ],
   "posts": [
@@ -24,6 +31,7 @@
   ],
   "userPosts": [
     {
+<<<<<<< HEAD
       "id": 61,
       "body": "poggs evening to you all",
       "timeOfPost": "11:14 AM 12/17/2021"
@@ -42,6 +50,12 @@
       "id": 42,
       "body": "mornin",
       "timeOfPost": "11:52 AM 12/27/2021"
+=======
+      "id": 78,
+      "body": "epic text post",
+      "timeOfPost": "12:34 PM 12/20/2021",
+      "poster": "jhumps"
+>>>>>>> e098e0f209a50df5e63322f6950a14e642141348
     }
   ],
   "profile": {

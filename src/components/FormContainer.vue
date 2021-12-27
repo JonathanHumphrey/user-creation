@@ -81,8 +81,8 @@ export default {
       this.userAccountCheck(answer);
     },
     onSubmit(e, data) {
-      console.log("id", e.target.id, data);
-
+      console.log("id", e.target, data);
+    
       // REGISTER PATH
       if (e.target.id === "1") {
         let newUser = {
@@ -98,6 +98,7 @@ export default {
         this.signUpUser(newUser);
 
         alert("Account Successfully Created!");
+        document.getElementById('id').form.reset();
       }
       // SIGN IN PATH
       else if (e.target.id === "0") {
@@ -114,6 +115,7 @@ export default {
               this.users[i].isSignedIn = true;
               router.push("/");
               break;
+              
             }
           } else if (data.data.username !== this.users[i].name) {
             console.log("incorrect name");
