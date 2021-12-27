@@ -21,7 +21,8 @@ const actions = {
         const res = await axios.get('http://localhost:5000/userPosts')
 
         console.log(res.data)
-        commit('setPosts', res.data)
+        let reversed = res.data.reverse();
+        commit('setPosts', reversed)
     }
 };
 const mutations = {

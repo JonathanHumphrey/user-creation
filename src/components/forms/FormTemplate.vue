@@ -50,7 +50,7 @@ export default {
 .input {
   flex: 10;
   padding: 10px;
-  border: 1px solid #41b883;
+  border: 1px solid #000000;
   outline: 0;
   width: 20rem;
   margin: auto;

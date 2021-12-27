@@ -47,7 +47,10 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import router from "../router.js";
 import FormTemplate from "@/components/forms/FormTemplate";
+
+import pfp from "../assets/pfp.jpg";
 
 export default {
   name: "FormContainer",
@@ -88,6 +91,7 @@ export default {
           email: data.data.email,
           pass: data.data.password,
           isSignedIn: false,
+          profilePicture: pfp.jpg,
         };
         console.log(newUser);
 
@@ -108,6 +112,7 @@ export default {
               //this.users.activeUser = this.users[i];
               this.loginUser(this.users[i]);
               this.users[i].isSignedIn = true;
+              router.push("/");
               break;
             }
           } else if (data.data.username !== this.users[i].name) {
@@ -135,26 +140,28 @@ export default {
 <style scoped>
 .form-container {
   border: solid black;
+  border-radius: 5px;
   flex: 2;
   width: 50rem;
   height: 18rem;
   margin: auto;
   padding-bottom: 3rem;
   position: relative;
+  background: rgba(109, 168, 226, 1);
 }
 .account-nav {
   cursor: pointer;
   border: none;
-  background-color: #36966b;
+  background-color: rgba(109, 168, 226, 1);
   padding: 0.25rem;
   margin: 0.25rem;
   border-radius: 0.5rem;
 }
 .account-nav-selected {
-  background-color: #51eba5;
+  background-color: #ffffff;
 }
 .account-nav:hover {
-  background-color: #51eba5;
+  background-color: rgb(195, 225, 255);
 }
 .section-name {
   text-align: left;

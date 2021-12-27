@@ -1,8 +1,10 @@
 <template>
   <div class="user-content">
-    <textarea placeholder="Compose a Post" id="user-text" />
+    <div class="post-div">
+      <textarea class="text-area" placeholder="Compose a Post" id="user-text" />
 
-    <button @click="post()">Post!</button>
+      <button @click="post()">Post!</button>
+    </div>
 
     <div class="posts" v-for="post in allPosts" v-bind:key="post.id">
       <h4>{{ activeUser.name }}</h4>
@@ -33,8 +35,9 @@ export default {
         body: str,
         timeOfPost: moment(new Date()).format("h:mm A MM/DD/YYYY"),
       };
-      console.log(sender.timeOfPost);
+
       this.postUserContent(sender);
+      text.value = "";
     },
     removePost(id) {
       this.deletePost(id);
@@ -56,14 +59,30 @@ export default {
 textarea {
   resize: none;
   width: 20%;
+  height: 2.5rem;
 }
 h4 {
   text-align: left;
   margin-left: 5rem;
   margin-bottom: 0;
 }
+button {
+  border: none;
+  border-radius: 5rem;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  border: solid rgb(200, 225, 250);
+}
+button:hover {
+  background-color: rgb(195, 225, 255);
+  border: solid rgb(39, 118, 197);
+}
 .user-content {
-  border: solid black;
+  border-radius: 2.5rem;
+  background: rgb(200, 225, 250);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 .del {
   position: absolute;
@@ -92,5 +111,9 @@ h4 {
 .post-body {
   padding: 1rem;
   margin-bottom: 2rem;
+}
+.text-area {
+  margin-top: 2rem;
+  border: none;
 }
 </style>

@@ -1,16 +1,15 @@
 <template>
-  <div>
-    <h3>Home</h3>
-    <p v-show="!activeUser.name">
+  <div v-if="this.activeUser === null">
+    <p>
       Welcome to the website, create an account or sign in to an existing one to
       view your dashboard
     </p>
   </div>
-  <div class="user-dash" v-show="activeUser.name">
-    User: {{ activeUser.name }}
+  <div class="user-dash" v-else>
     <UserContent />
   </div>
 </template>
+
 <script>
 import { mapState } from "vuex";
 
