@@ -22,6 +22,7 @@
 <script>
 export default {
   methods: {
+    // Function takes the user input from the form programmatically regardless of which form is passed, then sends the data to the formContainer component to be processed
     constructState(event, state) {
       event.preventDefault();
       let newState = {};

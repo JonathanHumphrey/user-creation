@@ -64,6 +64,7 @@ export default {
       email: "",
       pass: "",
       isSignedIn: false,
+      profilePicture: pfp,
     };
   },
   methods: {
@@ -80,9 +81,13 @@ export default {
       // Sends the answer to the users.js module to be processed
       this.userAccountCheck(answer);
     },
+
+    // Function checks to see which form to render and then packages the data into an object to be sent to the server, also deals with the sign in logic to check to see if the username and password are correct before allowing a sign in
+
+    //TODO: fix the logic that notifies the user if the username/password are incorrect
     onSubmit(e, data) {
       console.log("id", e.target, data);
-    
+
       // REGISTER PATH
       if (e.target.id === "1") {
         let newUser = {
@@ -92,13 +97,14 @@ export default {
           pass: data.data.password,
           isSignedIn: false,
           profilePicture: pfp.jpg,
+          darkMode: false,
         };
         console.log(newUser);
 
         this.signUpUser(newUser);
 
         alert("Account Successfully Created!");
-        document.getElementById('id').form.reset();
+        document.getElementById("id").form.reset();
       }
       // SIGN IN PATH
       else if (e.target.id === "0") {
@@ -110,12 +116,12 @@ export default {
             if (data.data.password === this.users[i].pass) {
               console.log("correct password");
               this.users.invalidCredentials = false;
-              //this.users.activeUser = this.users[i];
+
               this.loginUser(this.users[i]);
+
               this.users[i].isSignedIn = true;
               router.push("/");
               break;
-              
             }
           } else if (data.data.username !== this.users[i].name) {
             console.log("incorrect name");

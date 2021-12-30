@@ -2,7 +2,7 @@
   <div class="user-data" v-if="this.activeUser !== null">
     <h3>Username: {{ this.activeUser.name }}</h3>
     <p>Contact: {{ this.activeUser.email }}</p>
-    <img src="${{this.activeUser.profilePicture}}" alt="" />
+    <img src="" alt="" />
     <button @click="signOut($event)">Log Out</button>
   </div>
 </template>
@@ -14,11 +14,14 @@ export default {
   name: "UserData",
   methods: {
     ...mapActions(["logOutUser"]),
+
+    // function sets the active user to null, there might be a better way to do this
     signOut() {
       console.log(this.activeUser);
       this.logOutUser(null);
     },
   },
+  date: {},
   computed: {
     ...mapState({
       activeUser: (state) => state.users.activeUser,
@@ -30,6 +33,7 @@ export default {
 
 <style scoped>
 .user-data {
+  z-index: 1;
   width: 15rem;
   border-radius: 2.5rem;
   justify-content: left;
@@ -37,6 +41,7 @@ export default {
   flex-direction: column;
   background: rgba(109, 168, 226, 1);
   height: 7.5rem;
+  box-shadow: 7px 7px 7px -1px rgba(0, 0, 0, 0.64);
 }
 h3 {
   margin: 0;

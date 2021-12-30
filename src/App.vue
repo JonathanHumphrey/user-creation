@@ -1,44 +1,85 @@
 <template>
-  <div class="container">
-    <Header class="header" />
+  <body>
+    <div
+      class="container"
+      v-bind:class="[
+        this.activeUser !== null
+          ? this.activeUser.darkMode
+            ? 'dark-mode'
+            : 'light-mode'
+          : 'container',
+      ]"
+    >
+      <Header class="header" />
 
-    <!-- Router links for A Home component and form rendering -->
-    <div class="test">
-      <div class="nav">
-        <UserData class="user-data" />
-        <router-link to="/" class="router-link"> Home </router-link>
-        <router-link to="register" class="router-link"
-          >Login/Register</router-link
-        >
+      <i
+        class="far fa-lightbulb"
+        @click="togglePallete($event)"
+        v-show="[this.activeUser && this.activeUser.darkMode]"
+      ></i>
+      <i
+        class="fas fa-lightbulb"
+        @click="togglePallete($event)"
+        v-show="[this.activeUser && !this.activeUser.darkMode]"
+      ></i>
+      <!-- Router links for A Home component and form rendering -->
+      <div class="left-nav">
+        <div class="nav">
+          <UserData class="user-data" />
+          <router-link to="/" class="router-link"> Home </router-link>
+          <router-link to="register" class="router-link"
+            >Login/Register</router-link
+          >
+        </div>
+        <div class="view-container">
+          <router-view class="view"></router-view>
+        </div>
       </div>
-      <div class="view-container">
-        <router-view class="view"></router-view>
-      </div>
+      <br />
     </div>
-    <br />
-  </div>
+  </body>
 </template>
 
 <script>
 // Vuex plugins
+import { mapState, mapActions } from "vuex";
 
 // Component Imports
 import Header from "./components/Header.vue";
-//import FormContainer from "./components/FormContainer.vue";
-//import AllUsers from "./components/AllUsers.vue";
 import UserData from "./components/UserData.vue";
 
 export default {
   name: "App",
+
   // Components imports
   components: {
     Header,
-    //AllUsers,
     UserData,
+  },
+  methods: {
+    ...mapActions(["alterUserData"]),
+
+    // Function allows the user to toggle the darkMode boolean that is stored in the user object, logic is spread out across the app to render one of the two themes
+    togglePallete(event) {
+      if (this.activeUser !== null) {
+        console.log(event.target);
+        if (this.activeUser.darkMode === false) {
+          console.log("bop");
+          this.alterUserData(true);
+        } else if (this.activeUser.darkMode === true) {
+          this.alterUserData(false);
+        }
+      }
+    },
+  },
+  computed: {
+    ...mapState({
+      activeUser: (state) => state.users.activeUser,
+      users: (state) => state.users.users,
+    }),
   },
 };
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -47,23 +88,34 @@ export default {
   text-align: center;
   color: #2c3e50;
 
-  width: 100%;
-  height: 100%;
-}
-html {
   min-height: 100%;
-  background: rgb(181, 177, 236);
+}
+
+.light-mode {
+  background: linear-gradient(180deg, #b5b1ec 0%, #6da8e2 35%, #294861 100%);
+}
+.dark-mode {
   background: linear-gradient(
     180deg,
-    rgba(181, 177, 236, 1) 0%,
-    rgba(109, 168, 226, 1) 35%,
-    rgba(20, 33, 36, 1) 100%
+    hsla(244, 76%, 59%, 1) 0%,
+    hsla(210, 35%, 40%, 1) 51%,
+    hsla(207, 67%, 17%, 1) 100%
   );
+}
+</style>
+<style scoped>
+i {
+  cursor: pointer;
+  font-size: 2.5rem;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
 }
 .container {
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
+
+  min-height: 100vh;
 }
 .router-link {
   font-size: 2rem;
@@ -84,9 +136,10 @@ html {
   width: 100%;
   border-radius: 5rem;
 }
-.test {
+.left-nav {
   display: inherit;
 }
+
 ::-webkit-scrollbar {
   width: 1rem;
 }

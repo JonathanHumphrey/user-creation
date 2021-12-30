@@ -1,5 +1,10 @@
 <template>
-  <div class="user-content">
+  <div
+    v-bind:class="[
+      this.activeUser.darkMode ? 'dark-mode' : 'light-mode',
+      'user-content',
+    ]"
+  >
     <div class="post-div">
       <textarea class="text-area" placeholder="Compose a Post" id="user-text" />
 
@@ -7,23 +12,51 @@
     </div>
 
     <div class="posts" v-for="post in allPosts" v-bind:key="post.id">
-      <h4>{{ activeUser.name }}</h4>
-      <p class="post-body">{{ post.body }}</p>
-      <p class="date">Posted at: {{ post.timeOfPost }}</p>
-      <i class="del" @click="removePost(post.id)">...</i>
+      <h4
+        v-bind:class="[
+          this.activeUser.darkMode ? 'dark-mode-text' : 'light-mode-text',
+        ]"
+      >
+        {{ post.poster }}
+      </h4>
+      <p
+        v-bind:class="[
+          this.activeUser.darkMode ? 'dark-mode-text' : 'light-mode-text',
+          'post-body',
+        ]"
+      >
+        {{ post.body }}
+      </p>
+      <p
+        v-bind:class="[
+          this.activeUser.darkMode ? 'dark-mode-text' : 'light-mode-text',
+          'date',
+        ]"
+      >
+        Posted at: {{ post.timeOfPost }}
+      </p>
+      <i
+        v-bind:class="[
+          this.activeUser.darkMode ? 'dark-mode-text' : 'light-mode-text',
+          'del',
+        ]"
+        @click="removePost(post.id)"
+        >...</i
+      >
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-//import moment from "moment";
 
 export default {
   name: "UserContent",
   components: {},
   methods: {
     ...mapActions(["postUserContent", "deletePost", "fetchPosts"]),
+
+    // Function takes the user's input from the text-area as well as some user data to form a 'post' object and then sends that object to the server
     post() {
       let text = document.getElementById("user-text");
       let str = text.value;
@@ -34,6 +67,7 @@ export default {
         id: Math.floor(Math.random() * 100),
         body: str,
         timeOfPost: moment(new Date()).format("h:mm A MM/DD/YYYY"),
+        poster: this.activeUser.name,
       };
 
       this.postUserContent(sender);
@@ -83,6 +117,21 @@ button:hover {
   padding: 1rem;
   display: flex;
   flex-direction: column;
+
+  box-shadow: 4px 7px 18px 5px rgba(0, 0, 0, 1);
+  transition: all 0.3s ease-in-out;
+}
+.user-content:after {
+  box-shadow: 4px 7px 18px 5px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.dark-mode {
+  background: rgb(22, 71, 117);
+  box-shadow: 4px 7px 18px 5px rgba(255, 255, 255, 0.82);
+}
+.dark-mode-text {
+  color: azure;
 }
 .del {
   position: absolute;
@@ -107,6 +156,7 @@ button:hover {
   margin-top: 2rem;
   margin-bottom: 2rem;
   position: relative;
+  box-shadow: 4px 7px 18px 5px rgba(0, 0, 0, 0.82);
 }
 .post-body {
   padding: 1rem;

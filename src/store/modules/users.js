@@ -113,6 +113,9 @@ const actions = {
     async logOutUser({ commit }) {
         console.log(commit)
         commit('logout')
+    },
+    async alterUserData({ commit }, answer) {
+        commit('toggleDarkMode', answer)
     }
     
 };
@@ -122,7 +125,8 @@ const mutations = {
     removeUser: (state, id) => (state.users = state.users.filter(user => user.id !== id)),
     userAccount: (state, answer) => (state.userHasAccount = answer),
     selectedUser: (state, sender) => (state.activeUser = sender),
-    logout: (state) => (state.activeUser = null)
+    logout: (state) => (state.activeUser = null),
+    toggleDarkMode: (state, answer) => (state.activeUser.darkMode = answer)
 }
 
 export default {

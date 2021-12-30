@@ -20,6 +20,22 @@
       "email": "gokid58@gmail.com",
       "pass": "gokidder",
       "isSignedIn": false
+    },
+    {
+      "id": 634,
+      "name": "pogger",
+      "email": "ass@google.com",
+      "pass": "poop",
+      "isSignedIn": false,
+      "darkMode": false
+    },
+    {
+      "id": 372,
+      "name": "poggerMAn",
+      "email": "ass@google.com",
+      "pass": "poop",
+      "isSignedIn": false,
+      "darkMode": false
     }
   ],
   "posts": [
@@ -31,31 +47,28 @@
   ],
   "userPosts": [
     {
-<<<<<<< HEAD
-      "id": 61,
-      "body": "poggs evening to you all",
-      "timeOfPost": "11:14 AM 12/17/2021"
+      "id": 53,
+      "body": "hello",
+      "timeOfPost": "10:10 AM 12/28/2021",
+      "poster": "pogger"
     },
     {
-      "id": 62,
-      "body": "good morning you guys",
-      "timeOfPost": "8:49 AM 12/26/2021"
+      "id": 93,
+      "body": "good morning!",
+      "timeOfPost": "11:10 AM 12/28/2021",
+      "poster": "pogger"
     },
     {
-      "id": 86,
-      "body": "hello :)",
-      "timeOfPost": "9:00 AM 12/26/2021"
+      "id": 37,
+      "body": "these are dark mode posts",
+      "timeOfPost": "11:10 AM 12/28/2021",
+      "poster": "pogger"
     },
     {
-      "id": 42,
-      "body": "mornin",
-      "timeOfPost": "11:52 AM 12/27/2021"
-=======
-      "id": 78,
-      "body": "epic text post",
-      "timeOfPost": "12:34 PM 12/20/2021",
-      "poster": "jhumps"
->>>>>>> e098e0f209a50df5e63322f6950a14e642141348
+      "id": 73,
+      "body": "hehe :)",
+      "timeOfPost": "11:30 AM 12/29/2021",
+      "poster": "poggerMAn"
     }
   ],
   "profile": {
