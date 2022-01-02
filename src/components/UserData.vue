@@ -1,8 +1,8 @@
 <template>
   <div class="user-data" v-if="this.activeUser !== null">
-    <h3>Username: {{ this.activeUser.name }}</h3>
+    <h3>{{ this.activeUser.name }}</h3>
     <p>Contact: {{ this.activeUser.email }}</p>
-    <img src="" alt="" />
+    <img :src="this.activeUser.profilePicture" alt="" />
     <button @click="signOut($event)">Log Out</button>
   </div>
 </template>
@@ -42,6 +42,10 @@ export default {
   background: rgba(109, 168, 226, 1);
   height: 7.5rem;
   box-shadow: 7px 7px 7px -1px rgba(0, 0, 0, 0.64);
+}
+img {
+  width: 20px;
+  height: 20px;
 }
 h3 {
   margin: 0;

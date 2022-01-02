@@ -25,11 +25,17 @@
       <!-- Router links for A Home component and form rendering -->
       <div class="left-nav">
         <div class="nav">
-          <UserData class="user-data" />
-          <router-link to="/" class="router-link"> Home </router-link>
-          <router-link to="register" class="router-link"
-            >Login/Register</router-link
-          >
+          <div class="">
+            <UserData class="user-data" />
+          </div>
+          <div class="nav-item">
+            <router-link to="/" class="router-link"> Home </router-link>
+          </div>
+          <div class="nav-item">
+            <router-link to="register" class="router-link"
+              >Login/Register</router-link
+            >
+          </div>
         </div>
         <div class="view-container">
           <router-view class="view"></router-view>
@@ -90,7 +96,22 @@ export default {
 
   min-height: 100%;
 }
-
+.nav-item {
+  text-align: center;
+  transition: all 0.3s ease-in;
+  margin-top: 0.5rem;
+}
+.nav-item:hover {
+  z-index: 1;
+  width: 15rem;
+  border-radius: 2.5rem;
+  justify-content: left;
+  display: inherit;
+  flex-direction: column;
+  background: rgba(109, 168, 226, 1);
+  height: 2.5rem;
+  box-shadow: 7px 7px 7px -1px rgba(0, 0, 0, 0.64);
+}
 .light-mode {
   background: linear-gradient(180deg, #b5b1ec 0%, #6da8e2 35%, #294861 100%);
 }
@@ -114,16 +135,17 @@ i {
 .container {
   display: flex;
   flex-flow: column wrap;
-
+  text-align: center;
   min-height: 100vh;
 }
 .router-link {
   font-size: 2rem;
+  text-decoration: none;
   color: azure;
-
   border-radius: 2.5rem;
-  width: 15rem;
-  height: 2.5rem;
+  width: 100%;
+  min-height: 100%;
+  margin: auto;
 }
 .router-link:hover {
   color: aquamarine;
@@ -131,6 +153,10 @@ i {
 .nav {
   display: inherit;
   flex-direction: column;
+}
+
+.nav-item:after {
+  transition: opacity 0.3s ease-in-out;
 }
 .view-container {
   width: 100%;

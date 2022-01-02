@@ -42,6 +42,7 @@
       />
       <p v-bind:show="invalidCredentials">incorrect username or password</p>
     </div>
+    <img src="{{pfp}}" alt="" />
   </div>
 </template>
 
@@ -50,13 +51,12 @@ import { mapActions, mapState } from "vuex";
 import router from "../router.js";
 import FormTemplate from "@/components/forms/FormTemplate";
 
-import pfp from "../assets/pfp.jpg";
-
 export default {
   name: "FormContainer",
   components: {
     FormTemplate,
   },
+  // Default user object
   data() {
     return {
       id: 0,
@@ -64,7 +64,7 @@ export default {
       email: "",
       pass: "",
       isSignedIn: false,
-      profilePicture: pfp,
+      profilePicture: require("../assets/logo.png"),
     };
   },
   methods: {
@@ -96,7 +96,7 @@ export default {
           email: data.data.email,
           pass: data.data.password,
           isSignedIn: false,
-          profilePicture: pfp.jpg,
+          profilePicture: "../assets/pfp.jpg",
           darkMode: false,
         };
         console.log(newUser);

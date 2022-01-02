@@ -36,6 +36,23 @@
       "pass": "poop",
       "isSignedIn": false,
       "darkMode": false
+    },
+    {
+      "id": 854,
+      "name": "poggerMAn12",
+      "email": "ass@google.com",
+      "pass": "poop",
+      "isSignedIn": false,
+      "darkMode": false
+    },
+    {
+      "id": 173,
+      "name": "poggerMAn13",
+      "email": "ass@google.com",
+      "pass": "poop",
+      "isSignedIn": false,
+      "profilePicture": "../assets/pfp.jpg",
+      "darkMode": false
     }
   ],
   "posts": [
