@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const state = {
-    posts: []
+    posts: [],
+    postType: 'text'
 };
 const getters = {
     allPosts: (state) => state.posts
@@ -9,7 +10,7 @@ const getters = {
 const actions = {
     async postUserContent({ commit }, sender) {
         await axios.post('http://localhost:5000/userPosts', sender)
-        console.log(state.posts)
+        console.log(sender)
         //let content = res.data.body
         commit('post', sender)
     },
@@ -23,12 +24,13 @@ const actions = {
         console.log(res.data)
         let reversed = res.data.reverse();
         commit('setPosts', reversed)
-    }
+    },
 };
 const mutations = {
     post: (state, content) => state.posts.unshift(content),
     removePost: (state, id) => (state.posts = state.posts.filter(post => post.id !== id)),
     setPosts: (state, posts) => (state.posts = posts),
+
 };
 
 export default {

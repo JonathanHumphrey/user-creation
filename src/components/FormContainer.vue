@@ -42,7 +42,7 @@
       />
       <p v-bind:show="invalidCredentials">incorrect username or password</p>
     </div>
-    <img src="{{pfp}}" alt="" />
+    <img src="pfp" alt="" />
   </div>
 </template>
 

@@ -5,11 +5,7 @@
       'user-content',
     ]"
   >
-    <div class="post-div">
-      <textarea class="text-area" placeholder="Compose a Post" id="user-text" />
-
-      <button @click="post()">Post!</button>
-    </div>
+    <Compose />
 
     <div class="posts" v-for="post in allPosts" v-bind:key="post.id">
       <h4
@@ -50,29 +46,16 @@
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
 
+import Compose from "./Compose.vue";
+
 export default {
   name: "UserContent",
-  components: {},
+  components: {
+    Compose,
+  },
   methods: {
     ...mapActions(["postUserContent", "deletePost", "fetchPosts"]),
 
-    // Function takes the user's input from the text-area as well as some user data to form a 'post' object and then sends that object to the server
-    post() {
-      let text = document.getElementById("user-text");
-      let str = text.value;
-
-      let moment = require("moment");
-
-      let sender = {
-        id: Math.floor(Math.random() * 100),
-        body: str,
-        timeOfPost: moment(new Date()).format("h:mm A MM/DD/YYYY"),
-        poster: this.activeUser.name,
-      };
-
-      this.postUserContent(sender);
-      text.value = "";
-    },
     removePost(id) {
       this.deletePost(id);
     },
