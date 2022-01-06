@@ -52,7 +52,7 @@ export default {
         this.postUserContent(sender);
         text.value = "";
       } else {
-        console.log(this.image.name);
+        console.log(this.data);
         let moment = require("moment");
 
         let imgUrl = this.preview;
