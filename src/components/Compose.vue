@@ -52,7 +52,6 @@ export default {
         this.postUserContent(sender);
         text.value = "";
       } else {
-        console.log(this.image.name);
         let moment = require("moment");
 
         let imgUrl = this.preview;
@@ -60,7 +59,7 @@ export default {
           image: this.image,
           URL: imgUrl,
         };
-        console.log(imageData);
+        console.log(this.image);
 
         let sender = {
           id: Math.floor(Math.random() * 100),

@@ -64,28 +64,13 @@
   ],
   "userPosts": [
     {
-      "id": 53,
-      "body": "hello",
-      "timeOfPost": "10:10 AM 12/28/2021",
-      "poster": "pogger"
-    },
-    {
-      "id": 93,
-      "body": "good morning!",
-      "timeOfPost": "11:10 AM 12/28/2021",
-      "poster": "pogger"
-    },
-    {
-      "id": 37,
-      "body": "these are dark mode posts",
-      "timeOfPost": "11:10 AM 12/28/2021",
-      "poster": "pogger"
-    },
-    {
-      "id": 73,
-      "body": "hehe :)",
-      "timeOfPost": "11:30 AM 12/29/2021",
-      "poster": "poggerMAn"
+      "id": 90,
+      "body": {
+        "image": {},
+        "URL": "blob:http://localhost:8080/d0b31f4e-67fb-4d6c-bef1-6c4f56ca1e9c"
+      },
+      "timeOfPost": "10:40 AM 01/05/2022",
+      "poster": "poggerMAn13"
     }
   ],
   "profile": {
