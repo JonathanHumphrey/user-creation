@@ -22,6 +22,7 @@
         ]"
       >
         {{ post.body }}
+        <img v-if="post.body.URL" :src="post.body.URL" alt="">
       </p>
       <p
         v-bind:class="[

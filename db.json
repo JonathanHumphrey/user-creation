@@ -53,6 +53,24 @@
       "isSignedIn": false,
       "profilePicture": "../assets/pfp.jpg",
       "darkMode": false
+    },
+    {
+      "id": 295,
+      "name": "josh",
+      "email": "Joshhumphrey1@gmail.com",
+      "pass": "Dotto3!!",
+      "isSignedIn": false,
+      "profilePicture": "../assets/pfp.jpg",
+      "darkMode": false
+    },
+    {
+      "id": 817,
+      "name": "josh1",
+      "email": "Joshhumphrey11@gmail.com",
+      "pass": "Submit",
+      "isSignedIn": false,
+      "profilePicture": "../assets/pfp.jpg",
+      "darkMode": false
     }
   ],
   "posts": [
@@ -76,16 +94,13 @@
       "poster": "pogger"
     },
     {
-      "id": 37,
-      "body": "these are dark mode posts",
-      "timeOfPost": "11:10 AM 12/28/2021",
-      "poster": "pogger"
-    },
-    {
-      "id": 73,
-      "body": "hehe :)",
-      "timeOfPost": "11:30 AM 12/29/2021",
-      "poster": "poggerMAn"
+      "id": 45,
+      "body": {
+        "image": {},
+        "URL": "blob:http://localhost:8081/d83f392f-f4a9-4d81-bc7e-2f840d0947de"
+      },
+      "timeOfPost": "5:53 PM 01/05/2022",
+      "poster": "josh1"
     }
   ],
   "profile": {
