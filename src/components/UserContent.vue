@@ -15,6 +15,7 @@
       >
         {{ post.poster }}
       </h4>
+      <img v-if="post.picture" :src="post.picture.URL" alt="" />
       <p
         v-bind:class="[
           this.activeUser.darkMode ? 'dark-mode-text' : 'light-mode-text',
@@ -22,7 +23,6 @@
         ]"
       >
         {{ post.body }}
-        <img v-if="post.body.URL" :src="post.body.URL" alt="">
       </p>
       <p
         v-bind:class="[
@@ -74,6 +74,11 @@ export default {
 </script>
 
 <style scoped>
+img {
+  width: 10rem;
+  height: 15rem;
+  object-fit: cover;
+}
 textarea {
   resize: none;
   width: 20%;
