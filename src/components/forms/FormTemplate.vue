@@ -71,4 +71,16 @@ h3 {
   margin: auto;
   display: inline-block;
 }
+button {
+  margin-top: 1rem;
+  border: none;
+  border-radius: 5rem;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  border: solid rgb(200, 225, 250);
+}
+button:hover {
+  background-color: rgb(195, 225, 255);
+  border: solid rgb(39, 118, 197);
+}
 </style>

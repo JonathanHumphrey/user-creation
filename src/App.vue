@@ -12,21 +12,23 @@
     >
       <Header class="header" />
 
-      <i
-        class="far fa-lightbulb"
-        @click="togglePallete($event)"
-        v-show="[this.activeUser && this.activeUser.darkMode]"
-      ></i>
-      <i
-        class="fas fa-lightbulb"
-        @click="togglePallete($event)"
-        v-show="[this.activeUser && !this.activeUser.darkMode]"
-      ></i>
+      <div v-if="this.activeUser !== null">
+        <i
+          class="far fa-lightbulb"
+          @click="togglePallete($event)"
+          v-show="[this.activeUser && this.activeUser.darkMode]"
+        ></i>
+        <i
+          class="fas fa-lightbulb"
+          @click="togglePallete($event)"
+          v-show="[this.activeUser && !this.activeUser.darkMode]"
+        ></i>
+      </div>
       <!-- Router links for A Home component and form rendering -->
       <div class="left-nav">
         <div class="nav">
-          <div class="">
-            <UserData class="user-data" />
+          <div class="user-data">
+            <UserData />
           </div>
           <div class="nav-item">
             <router-link to="/" class="router-link"> Home </router-link>
@@ -88,12 +90,12 @@ export default {
 </script>
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-
+  background: linear-gradient(180deg, #b5b1ec 0%, #6da8e2 35%, #294861 100%);
   min-height: 100%;
 }
 .nav-item {
@@ -122,6 +124,20 @@ export default {
     hsla(210, 35%, 40%, 1) 51%,
     hsla(207, 67%, 17%, 1) 100%
   );
+}
+::-webkit-scrollbar {
+  width: 1rem;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(29, 29, 29);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(109, 168, 226, 1) 35%;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(181, 177, 236, 1) 0%;
 }
 </style>
 <style scoped>
@@ -164,20 +180,6 @@ i {
 }
 .left-nav {
   display: inherit;
-}
-
-::-webkit-scrollbar {
-  width: 1rem;
-}
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px rgb(29, 29, 29);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(109, 168, 226, 1) 35%;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(181, 177, 236, 1) 0%;
+  margin-left: 1rem;
 }
 </style>

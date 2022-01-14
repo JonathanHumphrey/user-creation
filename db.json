@@ -82,26 +82,22 @@
   ],
   "userPosts": [
     {
-      "id": 53,
-      "body": "hello",
-      "timeOfPost": "10:10 AM 12/28/2021",
-      "poster": "pogger"
+      "id": 91,
+      "body": "poop",
+      "timeOfPost": "10:54 AM 01/13/2022",
+      "poster": "poggerMAn13",
+      "likes": 0
     },
     {
-      "id": 93,
-      "body": "good morning!",
-      "timeOfPost": "11:10 AM 12/28/2021",
-      "poster": "pogger"
-    },
-    {
-      "id": 32,
+      "id": 37,
       "picture": {
         "image": {},
-        "URL": "blob:http://localhost:8080/aaf9e305-6591-49b2-9d89-1b43552566e8"
+        "URL": "blob:http://localhost:8080/f851d636-f8bb-4b98-bf72-ca799d934ea4"
       },
-      "body": "kitty cat",
-      "timeOfPost": "1:27 PM 01/12/2022",
-      "poster": "poggerMAn13"
+      "body": "cute little kitty",
+      "timeOfPost": "10:10 AM 01/14/2022",
+      "poster": "poggerMAn13",
+      "likes": 0
     }
   ],
   "profile": {

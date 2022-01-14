@@ -2,7 +2,8 @@ import axios from 'axios'
 
 const state = {
     posts: [],
-    postType: 'text'
+    postType: 'text', 
+    postInFocus: null
 };
 const getters = {
     allPosts: (state) => state.posts
@@ -25,12 +26,25 @@ const actions = {
         let reversed = res.data.reverse();
         commit('setPosts', reversed)
     },
+    async focusPost({commit}, postF) {
+        commit('setFocus',postF)
+    },
+    async like({ commit }) {
+        
+        
+        console.log(state.postInFocus)
+        
+        commit('setLikes',)
+        console.log(state.posts)
+        
+    }
 };
 const mutations = {
     post: (state, content) => state.posts.unshift(content),
     removePost: (state, id) => (state.posts = state.posts.filter(post => post.id !== id)),
     setPosts: (state, posts) => (state.posts = posts),
-
+    setLikes: (state,) => (state.postInFocus.likes = state.postInFocus.likes + 1),
+    setFocus: (state, postF) => (state.postInFocus = postF)
 };
 
 export default {

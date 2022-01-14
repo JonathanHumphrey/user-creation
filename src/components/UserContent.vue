@@ -24,6 +24,16 @@
       >
         {{ post.body }}
       </p>
+      <div class="likes">
+        <i class="far fa-heart" @click="likePost(post.id)"></i>
+        <p
+          v-bind:class="[
+            this.activeUser.darkMode ? 'dark-mode-text' : 'light-mode-text',
+          ]"
+        >
+          Liked by: {{ post.likes }}
+        </p>
+      </div>
       <p
         v-bind:class="[
           this.activeUser.darkMode ? 'dark-mode-text' : 'light-mode-text',
@@ -40,6 +50,13 @@
         @click="removePost(post.id)"
         >...</i
       >
+      <div class="dropdown">
+        <button class="post-options">...</button>
+        <div class="dropdown-content">
+          <a href="">Delete Post</a>
+          <a href="">Report Post</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -55,16 +72,35 @@ export default {
     Compose,
   },
   methods: {
-    ...mapActions(["postUserContent", "deletePost", "fetchPosts"]),
+    ...mapActions([
+      "postUserContent",
+      "deletePost",
+      "fetchPosts",
+      "like",
+      "focusPost",
+    ]),
 
     removePost(id) {
       this.deletePost(id);
     },
+    likePost(id) {
+      for (let i in this.allPosts) {
+        if (id === this.allPosts[i].id) {
+          let postFocused = this.allPosts[i];
+          console.log(postFocused);
+
+          this.focusPost(postFocused);
+          this.like();
+        }
+      }
+    },
   },
+
   computed: {
     ...mapGetters(["allPosts"]),
     ...mapState({
       activeUser: (state) => state.users.activeUser,
+      posts: (state) => state.posts,
     }),
   },
   created() {
@@ -78,6 +114,7 @@ img {
   width: 10rem;
   height: 15rem;
   object-fit: cover;
+  margin: auto;
 }
 textarea {
   resize: none;
@@ -99,6 +136,38 @@ button {
 button:hover {
   background-color: rgb(195, 225, 255);
   border: solid rgb(39, 118, 197);
+}
+.dropdown {
+  display: inline-block;
+  position: absolute;
+  cursor: pointer;
+  font-weight: bold;
+  top: 0;
+  right: 0.5rem;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: azure;
+  left: -0.5rem;
+  width: 10rem;
+  overflow: auto;
+  border-radius: 1rem;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  display: block;
+  color: #000000;
+  font-size: 0.95rem;
+  padding: 0.25rem;
+  text-decoration: none;
+}
+.dropdown-content a:hover {
+  color: #ffffff;
+  background-color: #00a4bd;
 }
 .user-content {
   border-radius: 2.5rem;
@@ -122,7 +191,7 @@ button:hover {
 .dark-mode-text {
   color: azure;
 }
-.del {
+.post-options {
   position: absolute;
   cursor: pointer;
   font-weight: bold;
@@ -146,6 +215,9 @@ button:hover {
   margin-bottom: 2rem;
   position: relative;
   box-shadow: 4px 7px 18px 5px rgba(0, 0, 0, 0.82);
+  display: inherit;
+  flex-direction: column;
+  border-radius: 1rem;
 }
 .post-body {
   padding: 1rem;
@@ -154,5 +226,20 @@ button:hover {
 .text-area {
   margin-top: 2rem;
   border: none;
+}
+.fa-heart {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+.likes {
+  display: inherit;
+  flex-direction: row;
+  width: 20%;
+  align-self: center;
+  align-items: center;
+  justify-content: space-evenly;
 }
 </style>

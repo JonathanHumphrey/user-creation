@@ -147,7 +147,6 @@ export default {
 
 <style scoped>
 .form-container {
-  border: solid black;
   border-radius: 5px;
   flex: 2;
   width: 50rem;
@@ -156,6 +155,7 @@ export default {
   padding-bottom: 3rem;
   position: relative;
   background: rgba(109, 168, 226, 1);
+  box-shadow: 4px 7px 18px 5px rgba(0, 0, 0, 1);
 }
 .account-nav {
   cursor: pointer;

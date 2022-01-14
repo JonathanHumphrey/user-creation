@@ -81,6 +81,7 @@ export default {
           body: str,
           timeOfPost: moment(new Date()).format("h:mm A MM/DD/YYYY"),
           poster: this.activeUser.name,
+          likes: 0,
         };
         this.postUserContent(sender);
         text.value = "";
@@ -105,6 +106,7 @@ export default {
           body: str,
           timeOfPost: moment(new Date()).format("h:mm A MM/DD/YYYY"),
           poster: this.activeUser.name,
+          likes: 0,
         };
         this.postUserContent(sender);
         console.log(sender);

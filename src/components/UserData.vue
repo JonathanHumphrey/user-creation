@@ -42,6 +42,7 @@ export default {
   background: rgba(109, 168, 226, 1);
   height: 7.5rem;
   box-shadow: 7px 7px 7px -1px rgba(0, 0, 0, 0.64);
+  position: relative;
 }
 img {
   width: 20px;
@@ -58,6 +59,9 @@ button {
   border-radius: 2rem;
   border: none;
   padding: 0.5rem;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
 }
 button:hover {
   color: rgb(243, 128, 128);
