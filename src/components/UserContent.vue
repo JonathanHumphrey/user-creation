@@ -42,21 +42,14 @@
       >
         Posted at: {{ post.timeOfPost }}
       </p>
-      <i
-        v-bind:class="[
-          this.activeUser.darkMode ? 'dark-mode-text' : 'light-mode-text',
-          'del',
-        ]"
-        @click="removePost(post.id)"
-        >...</i
-      >
       <div class="dropdown">
         <button class="post-options">...</button>
         <div class="dropdown-content">
-          <a href="">Delete Post</a>
-          <a href="">Report Post</a>
+          <a href="#" @click="removePost(post.id, $event)">Delete Post</a>
+          <a href="#" @click="reportPost(post.id, $event)">Report Post</a>
         </div>
       </div>
+      <Report v-bind:check="reportBool" v-bind:postID="id" />
     </div>
   </div>
 </template>
@@ -65,11 +58,19 @@
 import { mapActions, mapGetters, mapState } from "vuex";
 
 import Compose from "./Compose.vue";
+import Report from "./Report.vue";
 
 export default {
   name: "UserContent",
   components: {
     Compose,
+    Report,
+  },
+  data() {
+    return {
+      reportBool: false,
+      id: -1,
+    };
   },
   methods: {
     ...mapActions([
@@ -79,8 +80,14 @@ export default {
       "like",
       "focusPost",
     ]),
-
-    removePost(id) {
+    reportPost(id, e) {
+      e.preventDefault();
+      console.log(id);
+      this.reportBool = !this.reportBool;
+      this.id = id;
+    },
+    removePost(id, e) {
+      e.preventDefault();
       this.deletePost(id);
     },
     likePost(id) {
@@ -118,7 +125,7 @@ img {
 }
 textarea {
   resize: none;
-  width: 20%;
+  width: 15rem;
   height: 2.5rem;
 }
 h4 {
@@ -136,6 +143,17 @@ button {
 button:hover {
   background-color: rgb(195, 225, 255);
   border: solid rgb(39, 118, 197);
+}
+select {
+  width: 40%;
+}
+.report-modal {
+  border: solid black;
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  position: absolute;
+  right: -10rem;
 }
 .dropdown {
   display: inline-block;

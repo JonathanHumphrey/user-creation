@@ -31,11 +31,7 @@ const actions = {
     },
     async like({ commit }) {
         
-        
-        console.log(state.postInFocus)
-        
         commit('setLikes',)
-        console.log(state.posts)
         
     }
 };

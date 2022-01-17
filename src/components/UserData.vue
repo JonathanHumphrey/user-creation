@@ -2,13 +2,15 @@
   <div class="user-data" v-if="this.activeUser !== null">
     <h3>{{ this.activeUser.name }}</h3>
     <p>Contact: {{ this.activeUser.email }}</p>
-    <img :src="this.activeUser.profilePicture" alt="" />
+    <img v-bind:src="imageUrl" alt="" />
     <button @click="signOut($event)">Log Out</button>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+
+import pfp from "../assets/pfp.jpg";
 
 export default {
   name: "UserData",
@@ -21,7 +23,11 @@ export default {
       this.logOutUser(null);
     },
   },
-  date: {},
+  data() {
+    return {
+      imageUrl: pfp,
+    };
+  },
   computed: {
     ...mapState({
       activeUser: (state) => state.users.activeUser,
@@ -40,13 +46,14 @@ export default {
   display: inherit;
   flex-direction: column;
   background: rgba(109, 168, 226, 1);
-  height: 7.5rem;
+  height: 12rem;
   box-shadow: 7px 7px 7px -1px rgba(0, 0, 0, 0.64);
   position: relative;
 }
 img {
-  width: 20px;
-  height: 20px;
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
 }
 h3 {
   margin: 0;

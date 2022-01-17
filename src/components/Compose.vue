@@ -60,6 +60,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { mapActions, mapState } from "vuex";
 
@@ -82,6 +83,7 @@ export default {
           timeOfPost: moment(new Date()).format("h:mm A MM/DD/YYYY"),
           poster: this.activeUser.name,
           likes: 0,
+          reports: [],
         };
         this.postUserContent(sender);
         text.value = "";
@@ -107,6 +109,7 @@ export default {
           timeOfPost: moment(new Date()).format("h:mm A MM/DD/YYYY"),
           poster: this.activeUser.name,
           likes: 0,
+          reports: [],
         };
         this.postUserContent(sender);
         console.log(sender);
