@@ -49,6 +49,16 @@
           <a href="#" @click="reportPost(post.id, $event)">Report Post</a>
         </div>
       </div>
+    </div>
+    <div class="report-modal" v-if="reportBool && this.grabFocus.id === id">
+      <i
+        v-bind:class="[
+          this.activeUser.darkMode ? 'dark-mode-text' : 'light-mode-text',
+          'fas fa-times',
+        ]"
+        @click="this.reportBool = !this.reportBool"
+      ></i>
+
       <Report v-bind:check="reportBool" v-bind:postID="id" />
     </div>
   </div>
@@ -83,6 +93,12 @@ export default {
     reportPost(id, e) {
       e.preventDefault();
       console.log(id);
+      for (let i in this.allPosts) {
+        if (id === this.allPosts[i].id) {
+          let postFocused = this.allPosts[i];
+          this.focusPost(postFocused);
+        }
+      }
       this.reportBool = !this.reportBool;
       this.id = id;
     },
@@ -104,7 +120,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["allPosts"]),
+    ...mapGetters(["allPosts", "grabFocus"]),
     ...mapState({
       activeUser: (state) => state.users.activeUser,
       posts: (state) => state.posts,
@@ -147,13 +163,20 @@ button:hover {
 select {
   width: 40%;
 }
+.fa-times {
+  position: inherit;
+  top: 4rem;
+  right: 0;
+  cursor: pointer;
+}
 .report-modal {
-  border: solid black;
   display: flex;
   flex-direction: column;
   width: 20rem;
+  height: 15rem;
   position: absolute;
-  right: -10rem;
+  right: 2rem;
+  top: 5rem;
 }
 .dropdown {
   display: inline-block;

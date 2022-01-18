@@ -6,7 +6,8 @@ const state = {
     postInFocus: null
 };
 const getters = {
-    allPosts: (state) => state.posts
+    allPosts: (state) => state.posts,
+    grabFocus: (state) => state.postInFocus
 };
 const actions = {
     async postUserContent({ commit }, sender) {
@@ -33,6 +34,11 @@ const actions = {
         
         commit('setLikes',)
         
+    },
+    async putReport({ commit }, report) {
+        console.log(commit, report)
+        commit('postReport', report)
+        console.log(this.postInFocus)
     }
 };
 const mutations = {
@@ -40,7 +46,8 @@ const mutations = {
     removePost: (state, id) => (state.posts = state.posts.filter(post => post.id !== id)),
     setPosts: (state, posts) => (state.posts = posts),
     setLikes: (state,) => (state.postInFocus.likes = state.postInFocus.likes + 1),
-    setFocus: (state, postF) => (state.postInFocus = postF)
+    setFocus: (state, postF) => (state.postInFocus = postF),
+    postReport: (state, report) => (state.postInFocus.reports.unshift(report))
 };
 
 export default {
