@@ -1,6 +1,6 @@
 <template>
   <div class="form-container">
-    <!-- Sign up form -->
+    <!-- Sign IN form -->
     <FormTemplate
       id="0"
       v-bind:show="hasAccount"
@@ -9,9 +9,9 @@
       v-bind:formData="signInForm"
       v-bind:submitFunction="onSubmit"
     />
-    <!-- END SIGN UP -->
+    <!-- END SIGN IN -->
 
-    <!-- Sign in form -->
+    <!-- Sign up form -->
     <FormTemplate
       id="1"
       v-bind:show="!hasAccount"
@@ -20,7 +20,7 @@
       v-bind:formData="signUpForm"
       v-bind:submitFunction="onSubmit"
     />
-    <!-- END SIGN IN -->
+    <!-- END SIGN UP -->
 
     <div class="user-action">
       <input

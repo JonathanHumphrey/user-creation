@@ -5,9 +5,9 @@
       <div v-for="item in formData" v-bind:key="item.id" class="form">
         <p class="section-name">{{ item.sectionName }}</p>
         <div v-for="field in item.fields" v-bind:key="field.id">
-          <div v-if="field.type === 'input'">
+          <div>
             <input
-              type="field.type"
+              type="input"
               v-bind:placeholder="field.label"
               v-model="field.value"
               class="input"

@@ -5,14 +5,16 @@
       "name": "jhumps",
       "email": "jonny105596@outlook.com",
       "pass": "dooker",
-      "isSignedIn": false
+      "isSignedIn": false,
+      "darkMode": false
     },
     {
       "id": 259,
       "name": "dook",
       "email": "ass@google.com",
       "pass": "poop",
-      "isSignedIn": false
+      "isSignedIn": false,
+      "darkMode": false
     },
     {
       "id": 665,
